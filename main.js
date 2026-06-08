@@ -212,6 +212,65 @@
 
   init3DScene();
 
+  // ─── HERO VIDEO CAROUSEL ───
+  (function initVideoCarousel() {
+    const video = document.getElementById('hero-video');
+    const source = document.getElementById('hero-video-source');
+    const prevBtn = document.getElementById('video-prev');
+    const nextBtn = document.getElementById('video-next');
+    if (!video || !source) return;
+
+    const playlist = [
+      {
+        src: 'presentation-cafe-socco.mp4',
+        poster: 'ddc335ae-a799-4795-b525-498c561a2245.jfif',
+      },
+      {
+        src: 'presentation-cafe-socco-2.mp4',
+        poster: 'd140247f-68eb-44bb-9452-f8a56ce18f81.jfif',
+      },
+    ];
+    let current = 0;
+
+    function updateNav() {
+      if (prevBtn) prevBtn.classList.toggle('hidden', current === 0);
+      if (nextBtn) nextBtn.classList.toggle('hidden', current === playlist.length - 1);
+    }
+
+    function loadVideo(index, autoplay) {
+      if (index < 0 || index >= playlist.length) return;
+      current = index;
+      const item = playlist[index];
+      video.pause();
+      source.src = item.src;
+      video.poster = item.poster;
+      video.load();
+      updateNav();
+      if (autoplay) {
+        const playWhenReady = () => {
+          video.play().catch(() => {});
+          video.removeEventListener('canplay', playWhenReady);
+        };
+        video.addEventListener('canplay', playWhenReady);
+        if (video.readyState >= 3) playWhenReady();
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadVideo(current + 1, true);
+      });
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadVideo(current - 1, true);
+      });
+    }
+    updateNav();
+  })();
+
   // ─── HEADER SCROLL ───
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
@@ -223,17 +282,19 @@
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('open');
-    navMenu.classList.toggle('open');
-  });
-
-  navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      navMenu.classList.remove('open');
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navMenu.classList.toggle('open');
     });
-  });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
 
   // ─── ACTIVE NAV ON SCROLL ───
   const sections = document.querySelectorAll('section[id]');
@@ -252,8 +313,9 @@
   }
   window.addEventListener('scroll', setActiveNav);
 
-  // ─── 3D CARD TILT ───
+  // ─── 3D CARD TILT (sauf zone vidéo) ───
   document.querySelectorAll('.card-3d').forEach((card) => {
+    if (card.querySelector('#hero-video-carousel')) return;
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -320,30 +382,35 @@
   const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxClose = document.querySelector('.lightbox-close');
 
-  galleryItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const caption = item.querySelector('.gallery-overlay span');
-      lightboxImg.src = img.src.replace('w=500', 'w=1200').replace('w=800', 'w=1200');
-      lightboxImg.alt = img.alt;
-      lightboxCaption.textContent = caption ? caption.textContent : '';
-      lightbox.classList.add('active');
-      lightbox.setAttribute('aria-hidden', 'false');
+  if (lightbox && lightboxImg && lightboxClose) {
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const caption = item.querySelector('.gallery-overlay span');
+        if (!img) return;
+        lightboxImg.src = img.src.replace('w=500', 'w=1200').replace('w=800', 'w=1200');
+        lightboxImg.alt = img.alt;
+        if (lightboxCaption) {
+          lightboxCaption.textContent = caption ? caption.textContent : '';
+        }
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
     });
-  });
 
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    lightbox.setAttribute('aria-hidden', 'true');
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
   }
-
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
 
   // ─── ENVOI RÉSERVATION / CONTACT (sans FormSubmit — service souvent en panne) ───
   const cfg = window.CAFE_SOCCO_CONFIG || {
@@ -390,8 +457,8 @@
     const waLink = buildWhatsApp(`*${subject}*\n\n${body}`);
     const mailLink = buildMailto(subject, body);
     const title = isReservation
-      ? '✓ Réservation prête à envoyer !'
-      : '✓ Message prêt à envoyer !';
+      ? '✓ Reservation ready to send!'
+      : '✓ Message ready to send!';
     successEl.innerHTML = `
       <p><strong>${title}</strong></p>
       <p>Cliquez sur un bouton pour nous transmettre votre demande :</p>
@@ -411,7 +478,7 @@
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Envoi en cours...';
+      submitBtn.textContent = 'Sending...';
     }
     if (errorEl) errorEl.hidden = true;
     if (successEl) successEl.hidden = true;
@@ -420,7 +487,7 @@
       const sent = await tryWeb3Forms(form, subject);
       if (sent) {
         successEl.innerHTML =
-          '<p><strong>✓ Envoyé avec succès !</strong> Nous vous contacterons très bientôt.</p>';
+          '<p><strong>✓ Sent successfully!</strong> We will contact you very soon.</p>';
         successEl.hidden = false;
         form.reset();
       } else {
@@ -441,24 +508,25 @@
   const resSuccess = document.getElementById('res-success');
   const resError = document.getElementById('res-error');
   const resSubmitBtn = document.getElementById('res-submit-btn');
-  const resDateInput = document.getElementById('res-date');
-
+  const resDateInput = document.getElementById('date') || document.getElementById('res-date');
   if (resDateInput) {
     const today = new Date().toISOString().split('T')[0];
     resDateInput.setAttribute('min', today);
   }
 
-  resForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    handleFormSubmit(resForm, {
-      successEl: resSuccess,
-      errorEl: resError,
-      submitBtn: resSubmitBtn,
-      subject: 'Réservation Café Socco',
-      defaultBtnText: 'Confirmer la réservation',
-      isReservation: true,
+  if (resForm) {
+    resForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleFormSubmit(resForm, {
+        successEl: resSuccess || document.getElementById('form-status'),
+        errorEl: resError,
+        submitBtn: resSubmitBtn,
+        subject: 'Café Socco Reservation',
+        defaultBtnText: 'Confirm reservation',
+        isReservation: true,
+      });
     });
-  });
+  }
 
   // ─── CONTACT FORM ───
   const contactForm = document.getElementById('contact-form');
@@ -466,17 +534,19 @@
   const contactError = document.getElementById('contact-error');
   const contactSubmitBtn = document.getElementById('contact-submit-btn');
 
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    handleFormSubmit(contactForm, {
-      successEl: contactSuccess,
-      errorEl: contactError,
-      submitBtn: contactSubmitBtn,
-      subject: 'Message contact — Café Socco',
-      defaultBtnText: 'Envoyer',
-      isReservation: false,
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleFormSubmit(contactForm, {
+        successEl: contactSuccess,
+        errorEl: contactError,
+        submitBtn: contactSubmitBtn,
+        subject: 'Contact Message — Café Socco',
+        defaultBtnText: 'Send',
+        isReservation: false,
+      });
     });
-  });
+  }
 
   // ─── SMOOTH SCROLL OFFSET FOR FIXED HEADER ───
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -493,3 +563,4 @@
     });
   });
 })();
+

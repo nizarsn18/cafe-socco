@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Café Socco — Cultural and Oriental musical café. Premium coffee, live evenings, warm atmosphere. Reserve your table online." />
+  <meta name="keywords" content="oriental café, live music, Café Socco, reservation, musical evenings" />
+  <meta name="author" content="Café Socco" />
+  <meta property="og:title" content="Café Socco — Cultural & Oriental Musical Café" />
+  <meta property="og:description" content="A warm space combining premium coffee, oriental atmosphere and traditional live music." />
+  <meta property="og:type" content="website" />
+  <title>Café Socco — Cultural & Oriental Musical Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>" />
+</head>
+<body>
+  <div id="loader" class="loader">
+    <div class="loader-cup">
+      <div class="cup-3d"></div>
+      <p>Preparing your experience...</p>
+    </div>
+  </div>
+
+  <canvas id="scene-3d" aria-hidden="true"></canvas>
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="logo">
+        <span class="logo-icon">☕</span>
+        <span class="logo-text">Café <em>Socco</em></span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+         <li><a href="#home" class="nav-link active">Home</a></li>
+         <li><a href="#about" class="nav-link">About</a></li>
+         <li><a href="#menu" class="nav-link">Menu</a></li>
+         <li><a href="#events" class="nav-link">Events</a></li>
+         <li><a href="#gallery" class="nav-link">Gallery</a></li>
+         <li><a href="#reservation" class="nav-link nav-cta">Reserve</a></li>
+         <li><a href="#Contact" class="nav-link">Contact</a></li>
+       </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="hero">
+      <div class="hero-content container">
+        <div class="hero-badge" data-aos>The art of oriental coffee</div>
+        <h1 class="hero-title" data-aos>
+          <span class="line">Welcome to</span>
+          <span class="line gold">Café Socco</span>
+        </h1>
+        <p class="hero-slogan" data-aos>
+          Where the elegance of coffee meets the magic of oriental music
+        </p>
+        <div class="hero-actions" data-aos>
+          <a href="#reservation" class="btn btn-primary btn-3d">Reserve a table</a>
+          <a href="#about" class="btn btn-outline btn-3d">Discover</a>
+        </div>
+        <div class="hero-stats" data-aos>
+          <div class="stat-card card-3d">
+            <span class="stat-num">15+</span>
+            <span class="stat-label">Years of experience</span>
+          </div>
+          <div class="stat-card card-3d">
+            <span class="stat-num">200+</span>
+            <span class="stat-label">Musical Evenings</span>
+          </div>
+          <div class="stat-card card-3d">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Specialties</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+      <div class="container">
+        <div class="section-header" data-aos>
+          <span class="section-tag">Our story</span>
+          <h2 class="section-title">About Café Socco</h2>
+          <div class="ornament"></div>
+        </div>
+        <div class="about-grid">
+          <div class="about-visual card-3d" data-aos>
+            <div class="about-image-wrap">
+              <img src="OIP.webp" alt="Espresso"></div>
+                <div class="menu-card-body">
+                  <h3>Espresso</h3>
+                  <p>Short and intense coffee, house roasted</p>
+                  <span class="price">15 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('b230e6b4-6e6b-4aef-a643-80ec043b1b0c.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Turkish Coffee</h3>
+                  <p>Traditional coffee served in cezve, smooth and aromatic</p>
+                  <span class="price">18 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('b140b8f4-04fd-4c9d-a0b1-84c23b52e274.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Mint Tea</h3>
+                  <p>Fresh mint and green tea — moroccan tradition</p>
+                  <span class="price">20 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('3c416619-67d5-498b-974f-65277251a952.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Golden Latte</h3>
+                  <p>Creamy latte with oriental touch</p>
+                  <span class="price">28 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('13833c43-cf29-4215-bcfb-c69cce83f531.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Socco Mocha</h3>
+                  <p>Chocolate, espresso and whipped cream — our signature</p>
+                  <span class="price">32 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('ddc335ae-a799-4795-b525-498c561a2245.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Fresh Orange Juice</h3>
+                  <p>Fresh oranges pressed to order</p>
+                  <span class="price">22 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('d140247f-68eb-44bb-9452-f8a56ce18f81.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Rose Tea</h3>
+                  <p>Delicate infusion with rose petals</p>
+                  <span class="price">25 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('b230e6b4-6e6b-4aef-a643-80ec043b1b0c.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Fruit Smoothie</h3>
+                  <p>Mix of fresh seasonal fruits</p>
+                  <span class="price">30 DH</span>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="menu-panel" id="panel-crepes">
+            <div class="menu-grid">
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('ddc335ae-a799-4795-b525-498c561a2245.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Nutella Crepe</h3>
+                  <p>Thin Crepe filled with melting Nutella</p>
+                  <span class="price">25 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('d140247f-68eb-44bb-9452-f8a56ce18f81.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Honey & Almond Crepe</h3>
+                  <p>Acacia honey and roasted almonds</p>
+                  <span class="price">28 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('b230e6b4-6e6b-4aef-a643-80ec043b1b0c.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Speculoos Crepe</h3>
+                  <p>Crushed Speculoos and caramel sauce</p>
+                  <span class="price">30 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('b140b8f4-04fd-4c9d-a0b1-84c23b52e274.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Fresh Fruit Crepe</h3>
+                  <p>Assortment of seasonal fruits and coulis</p>
+                  <span class="price">32 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('3c416619-67d5-498b-974f-65277251a952.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>White Chocolate Crepe</h3>
+                  <p>White chocolate and grated coconut</p>
+                  <span class="price">30 DH</span>
+                </div>
+              </article>
+              <article class="menu-card card-3d">
+                <div class="menu-card-img" style="background-image:url('13833c43-cf29-4215-bcfb-c69cce83f531.jfif')"></div>
+                <div class="menu-card-body">
+                  <h3>Socco Crepe</h3>
+                  <p>Our creation: honey, almonds, banana and cinnamon</p>
+                  <span class="price">35 DH</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Musical Evenings -->
+    <section id="events" class="section events">
+      <div class="container">
+        <div class="section-header" data-aos>
+          <span class="section-tag">Cultural agenda</span>
+          <h2 class="section-title">Musical Evenings</h2>
+          <div class="ornament"></div>
+          <p class="section-desc">Experience the magic of live oriental music</p>
+        </div>
+        <div class="events-timeline">
+          <article class="event-card card-3d" data-aos>
+            <div class="event-Date">
+              <span class="day">15</span>
+              <span class="month">June</span>
+            </div>
+            <div class="event-img" style="background-image:url('13833c43-cf29-4215-bcfb-c69cce83f531.jfif')"></div>
+            <div class="event-info">
+              <h3>Nights of the Oud</h3>
+              <p class="artist">Karim Al-Masri — Master of Oud</p>
+              <p>An enchanting evening dedicated to classical Middle Eastern melodies. Reservation advised.</p>
+              <span class="event-time">9:00 PM — Free entry with purchase</span>
+            </div>
+          </article>
+          <article class="event-card card-3d" data-aos>
+            <div class="event-Date">
+              <span class="day">22</span>
+              <span class="month">June</span>
+            </div>
+            <div class="event-img" style="background-image:url('ddc335ae-a799-4795-b525-498c561a2245.jfif')"></div>
+            <div class="event-info">
+              <h3>Rhythms of Morocco</h3>
+              <p class="artist">Gnawa Fusion Ensemble</p>
+              <p>Modern Gnawa meets oriental jazz. Dance and trance guaranteed.</p>
+              <span class="event-time">8:30 PM — 15 € (drink included)</span>
+            </div>
+          </article>
+          <article class="event-card card-3d" data-aos>
+            <div class="event-Date">
+              <span class="day">29</span>
+              <span class="month">June</span>
+            </div>
+            <div class="event-img" style="background-image:url('d140247f-68eb-44bb-9452-f8a56ce18f81.jfif')"></div>
+            <div class="event-info">
+              <h3>Voices of the East</h3>
+              <p class="artist">Layla Benali — Classical Singer</p>
+              <p>Recital of Andalusian songs and Sufi poetry and Sufi poetry in an intimate setting.</p>
+              <span class="event-time">9:30 PM — Limited seats</span>
+            </div>
+          </article>
+        </div>
+        <div class="events-video card-3d" data-aos>
+          <div class="video-placeholder">
+            <div class="play-btn" aria-label="Play video">▶</div>
+            <p>Atmosphere of an evening at Cafe Socco</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section gallery">
+      <div class="container">
+        <div class="section-header" data-aos>
+          <span class="section-tag">Visual immersion</span>
+          <h2 class="section-title">Gallery</h2>
+          <div class="ornament"></div>
+        </div>
+        <div class="gallery-filters" data-aos>
+          <button class="gallery-filter active" data-filter="all">All</button>
+          <button class="gallery-filter" data-filter="cafe">The Café</button>
+          <button class="gallery-filter" data-filter="ambiance">Atmosphere</button>
+          <button class="gallery-filter" data-filter="events">Events</button>
+        </div>
+        <div class="gallery-grid" id="gallery-grid">
+          <div class="gallery-item card-3d" data-category="cafe" data-aos>
+            <img src="b140b8f4-04fd-4c9d-a0b1-84c23b52e274.jfif" alt="The Counter" loading="lazy" />
+            <div class="gallery-overlay"><span>The Counter</span></div>
+          </div>
+          <div class="gallery-item card-3d" data-category="ambiance" data-aos>
+            <img src="3c416619-67d5-498b-974f-65277251a952.jfif" alt="Golden Lights" loading="lazy" />
+            <div class="gallery-overlay"><span>Golden Lights</span></div>
+          </div>
+          <div class="gallery-item card-3d wide" data-category="events" data-aos>
+            <img src="d140247f-68eb-44bb-9452-f8a56ce18f81.jfif" alt="Live Evening" loading="lazy" />
+            <div class="gallery-overlay"><span>Live Evening</span></div>
+          </div>
+          <div class="gallery-item card-3d" data-category="cafe" data-aos>
+            <img src="b230e6b4-6e6b-4aef-a643-80ec043b1b0c.jfif" alt="Art of Coffee" loading="lazy" />
+            <div class="gallery-overlay"><span>Art of Coffee</span></div>
+          </div>
+          <div class="gallery-item card-3d" data-category="ambiance" data-aos>
+            <img src="ddc335ae-a799-4795-b525-498c561a2245.jfif" alt="Oriental Salon" loading="lazy" />
+            <div class="gallery-overlay"><span>Oriental Salon</span></div>
+          </div>
+          <div class="gallery-item card-3d tall" data-category="events" data-aos>
+            <img src="13833c43-cf29-4215-bcfb-c69cce83f531.jfif" alt="Artists" loading="lazy" />
+            <div class="gallery-overlay"><span>Artists</span></div>
+          </div>
+          <div class="gallery-item card-3d" data-category="ambiance" data-aos>
+            <img src="b140b8f4-04fd-4c9d-a0b1-84c23b52e274.jfif" alt="Decor" loading="lazy" />
+            <div class="gallery-overlay"><span>Decor</span></div>
+          </div>
+          <div class="gallery-item card-3d" data-category="cafe" data-aos>
+            <img src="3c416619-67d5-498b-974f-65277251a952.jfif" alt="Barista" loading="lazy" />
+            <div class="gallery-overlay"><span>Barista</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <img src="" alt="" id="lightbox-img" />
+        <p id="lightbox-caption"></p>
+      </div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section id="reservation" class="section reservation">
+      <div class="container">
+        <div class="section-header" data-aos>
+          <span class="section-tag">Your table is waiting for you</span>
+          <h2 class="section-title">Reservation</h2>
+          <div class="ornament"></div>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info" data-aos>
+            <div class="contact-card card-3d">
+              <div class="contact-icon">📞</div>
+              <h3>Phone</h3>
+              <a href="tel:+212777498828">07 77 49 88 28</a>
+            </div>
+            <div class="contact-card card-3d">
+              <div class="contact-icon">✉</div>
+              <h3>Email</h3>
+              <a href="mailto:Jihanemj111@gmail.com">Jihanemj111@gmail.com</a>
+            </div>
+            <div class="contact-card card-3d">
+              <div class="contact-icon">📍</div>
+              <h3>Address</h3>
+              <p>Tangier, Morocco</p>
+            </div>
+            <div class="social-links">
+              <a href="#" class="social-link card-3d" aria-label="Instagram">IG</a>
+              <a href="#" class="social-link card-3d" aria-label="Facebook">FB</a>
+              <a href="#" class="social-link card-3d" aria-label="TikTok">TK</a>
+              <a href="#" class="social-link card-3d" aria-label="YouTube">YT</a>
+            </div>
+          </div>
+          <form class="contact-form card-3d" id="contact-form" data-aos>
+            <h3>Send us a Message</h3>
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="Name" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input type="Email" id="contact-email" name="Email" required />
+            </div>
+            <div class="form-group">
+              <label for="Contact-Subject">Subject</label>
+              <input type="text" id="Contact-Subject" name="Subject" required />
+            </div>
+            <div class="form-group">
+              <label for="Contact-Message">Message</label>
+              <textarea id="Contact-Message" name="Message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-3d" id="Contact-submit-btn">Send</button>
+            <div class="form-success" id="Contact-success" hidden>
+              ✓ Message sent successfully!
+            </div>
+            <div class="form-error" id="Contact-error" hidden></div>
+          </form>
+        </div>
+        <div class="map-wrap card-3d" data-aos>
+          <iframe
+            title="Café Socco — Tangier, Morocco"
+            src="https://maps.google.com/maps?q=Tanger,+Maroc&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <div class="map-marker" aria-hidden="true" title="Café Socco — Tanger"></div>
+          <a class="map-link" href="https://www.google.com/maps/search/Tanger,+Maroc" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">Café <em>Socco</em></span>
+        <p>The art of oriental coffee depuis 2010</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="#home">Accueil</a>
+        <a href="#menu">Menu</a>
+        <a href="#events">evenings</a>
+        <a href="#reservation">Réserver</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Café Socco. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="three.min.js"></script>
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
